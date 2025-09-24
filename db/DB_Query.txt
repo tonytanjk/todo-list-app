@@ -1,0 +1,31 @@
+Database Query Creation of dependencies
+
+
+Creating todolist.db
+
+-- Step 1: Create the database
+CREATE DATABASE todolist;
+GO
+
+-- Step 2: Use the new database
+USE todolist;
+GO
+
+Step 3:
+
+CREATE TABLE Users (
+    user_id INT IDENTITY(1,1) PRIMARY KEY,
+    username NVARCHAR(100) NOT NULL UNIQUE,
+    email NVARCHAR(255),
+    uuid UNIQUEIDENTIFIER NOT NULL DEFAULT NEWID()
+);
+GO
+
+CREATE TABLE Tasks (
+    id INT IDENTITY(1,1) PRIMARY KEY,
+    task NVARCHAR(255) NOT NULL,
+    completed BIT NOT NULL DEFAULT 0,
+    user_id INT NOT NULL,
+    CONSTRAINT FK_Tasks_Users FOREIGN KEY (user_id) REFERENCES Users(user_id)
+);
+GO
