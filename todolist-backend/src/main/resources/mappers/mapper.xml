@@ -9,28 +9,28 @@
 
     <select id="findAll" resultMap="TodoItemResultMap">
         SELECT id, task, completed
-        FROM todo_items
+        FROM Tasks
     </select>
 
     <select id="findById" parameterType="Long" resultMap="TodoItemResultMap">
         SELECT id, task, completed
-        FROM todo_items
+        FROM Tasks
         WHERE id = #{id}
     </select>
 
     <insert id="insert" parameterType="com.example.todolist.models.TodoItem" useGeneratedKeys="true" keyProperty="id">
-        INSERT INTO todo_items (task, completed)
+        INSERT INTO Tasks (task, completed)
         VALUES (#{task}, #{completed})
     </insert>
 
     <update id="update" parameterType="com.example.todolist.models.TodoItem">
-        UPDATE todo_items
+        UPDATE Tasks
         SET task = #{task}, completed = #{completed}
         WHERE id = #{id}
     </update>
 
     <delete id="deleteById" parameterType="Long">
-        DELETE FROM todo_items
+        DELETE FROM Tasks
         WHERE id = #{id}
     </delete>
 

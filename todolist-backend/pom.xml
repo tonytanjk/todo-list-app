@@ -11,8 +11,8 @@
 	<groupId>com.example</groupId>
 	<artifactId>todolist</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>todomybatis</name>
-	<description>todo with mybatis</description>
+	<name>ToDoList</name>
+	<description>TodoList</description>
 	<url/>
 	<licenses>
 		<license/>
