@@ -7,10 +7,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.security.authentication.*;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.stereotype.Component;
 
-import javax.naming.AuthenticationException;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -27,12 +27,22 @@ public class CustomAuthenticationHandler implements AuthenticationFailureHandler
         response.setStatus(HttpStatus.UNAUTHORIZED.value());
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
 
-        //Json Message
+        //Custom Error Message based on an exception type
+        String errorMessage;
+        if (exception instanceof BadCredentialsException) {
+            errorMessage = "Invalid username or password.";
+        } else if (exception instanceof LockedException) {
+            errorMessage = "Account is locked.";
+        } else if (exception instanceof DisabledException) {
+            errorMessage = "Account is disabled.";
+        } else {
+            errorMessage = "Authentication failed. Contact your administrator.";
+        }
+
+        //JSON Message
         Map<String, Object> errorDetails = new HashMap<>();
         errorDetails.put("status", HttpStatus.UNAUTHORIZED.value());
-        errorDetails.put("error", "Authentication failed");
-        errorDetails.put("message", exception.getMessage());
-
+        errorDetails.put("message", errorMessage);
         objectMapper.writeValue(response.getWriter(), errorDetails);
     }
 }
