@@ -34,4 +34,9 @@
         WHERE id = #{id}
     </delete>
 
+    <insert id="RegisterUser" parameterType="com.example.todolist.models.User">
+        INSERT INTO Users (username, password)
+        VALUES (#{username}, #{password})
+    </insert>
+
 </mapper>

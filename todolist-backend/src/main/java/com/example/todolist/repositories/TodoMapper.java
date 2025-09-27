@@ -13,4 +13,6 @@ public interface TodoMapper {
     void insert(TodoItem todoItem);
     void update(TodoItem todoItem);
     void deleteById(Long id);
+
+    void RegisterUser(String username, String password);
 }
