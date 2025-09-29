@@ -14,5 +14,9 @@ public interface TodoMapper {
     void update(TodoItem todoItem);
     void deleteById(Long id);
 
-    void RegisterUser(String username, String password);
 }
+
+
+/*User functions in specific TodoList.
+(Should add common access for
+general functions and roles for specific functions i.e Viewer, editor, owner) */
